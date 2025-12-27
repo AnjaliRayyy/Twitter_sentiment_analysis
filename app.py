@@ -11,6 +11,15 @@ tfidf = pickle.load(open('tfidf_vectorizer.pkl', 'rb'))
 st.set_page_config(page_title="Twitter Sentiment Analysis", layout="centered")
 st.title("🐦 Twitter Sentiment Analysis")
 
+# Hide Streamlit UI elements
+hide_streamlit_style = """
+<style>
+#MainMenu {visibility: hidden;}
+header {visibility: hidden;}
+footer {visibility: hidden;}
+</style>
+"""
+
 st.write(
     "Analyze the sentiment of a tweet using a trained Machine Learning model."
 )
