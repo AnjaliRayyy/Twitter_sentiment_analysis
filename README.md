@@ -119,5 +119,3 @@ You are free to use, modify, and distribute it.
 * Scikit-learn documentation
 * Streamlit community
 * Open-source NLP resources
-
-```
