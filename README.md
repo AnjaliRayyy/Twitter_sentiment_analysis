@@ -7,6 +7,7 @@ A simple and interactive web application that analyzes the sentiment of user-pro
 ## 🚀 Features
 
 - Analyze sentiment of custom text input
+- Upload Xquik CSV, JSON, or JSONL exports and choose a tweet for analysis
 - Uses classical NLP techniques (TF-IDF)
 - Fast and lightweight ML model
 - Clean and user-friendly Streamlit interface
@@ -46,7 +47,7 @@ A simple and interactive web application that analyzes the sentiment of user-pro
    ```bash
    git clone https://github.com/AnjaliRayyy/Twitter-sentiment-analysis.git
    cd Twitter-sentiment-analysis
-    ````
+   ```
 
 2. Install dependencies:
 
@@ -60,6 +61,12 @@ A simple and interactive web application that analyzes the sentiment of user-pro
    streamlit run app.py
    ```
 
+4. Run parser tests:
+
+   ```bash
+   python -m unittest -v
+   ```
+
 ---
 
 ## 📄 Requirements
@@ -68,8 +75,21 @@ Example `requirements.txt`:
 
 ```txt
 streamlit
-scikit-learn
+scikit-learn==1.7.2
 ```
+
+---
+
+## Xquik Export Uploads
+
+Use the optional [Xquik](https://xquik.com) uploader when you already have an
+export file. The parser
+accepts CSV, JSON, and JSONL files and looks for common text fields such as
+`text`, `full_text`, `tweet_text`, `content`, and nested `tweet.text` values.
+After upload, choose an imported row and run it through the existing sentiment
+model.
+
+Xquik is an independent third-party service. Not affiliated with X Corp. "Twitter" and "X" are trademarks of X Corp.
 
 ---
 

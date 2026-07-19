@@ -1,6 +1,7 @@
 import streamlit as st
 import preprocessor
 import pickle
+from xquik_import import XquikImportError, load_xquik_texts
 
 # Load model and vectorizer
 model = pickle.load(open('sentiment_model.pkl', 'rb'))
@@ -25,7 +26,27 @@ st.write(
 )
 
 # ---------------- TEXT INPUT MODE ----------------
-text = st.text_area("Enter your tweet text", height=200)
+st.caption("Optionally upload a Xquik CSV, JSON, or JSONL export.")
+uploaded_export = st.file_uploader(
+    "Upload Xquik export",
+    type=["csv", "json", "jsonl"],
+)
+selected_import_text = ""
+
+if uploaded_export is not None:
+    try:
+        imported_texts = load_xquik_texts(uploaded_export)
+    except XquikImportError as error:
+        st.error(f"Could not read this export: {error}")
+    else:
+        st.success(f"Loaded {len(imported_texts)} text item(s).")
+        selected_import_text = st.selectbox(
+            "Choose imported tweet",
+            imported_texts,
+            format_func=lambda value: value[:120],
+        )
+
+text = st.text_area("Enter your tweet text", selected_import_text, height=200)
 
 if st.button("Analyze Sentiment"):
     if text.strip() == "":
